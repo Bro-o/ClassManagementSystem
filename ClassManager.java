@@ -1,112 +1,130 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ClassManager {
-	Class inclass;
-	Scanner input = new Scanner(System.in);
+	ArrayList<Class> inclasses = new ArrayList<Class>();
+	Scanner sc = new Scanner(System.in);
+	Scanner ss = new Scanner(System.in);
 
 	ClassManager(){
-		
+
 	}
 
 	public void addStudent() {
-		inclass = new Class();
+		Class inclass = new Class();
 
 		System.out.print("Subject:");
-		inclass.subject = input.nextLine();
+		inclass.subject = sc.nextLine();
 
 
 		System.out.print("Class No.:");
-		inclass.classNo = input.nextLine();
+		inclass.classNo = sc.nextLine();
 
 		System.out.print("Class Hour:");
-		inclass.classHour = input.nextLine();
+		inclass.classHour = sc.nextLine();
 
 		System.out.print("Classroom:");
-		inclass.classroom = input.nextLine();
+		inclass.classroom = sc.nextLine();
 
 		System.out.print("Professor:");
-		inclass.professor = input.nextLine();
+		inclass.professor = sc.nextLine();
 
 		System.out.print("Email Adress:");
-		inclass.professorEmail = input.nextLine();
+		inclass.professorEmail = sc.nextLine();
 
 		System.out.print("Phone:");
-		inclass.professorPhone = input.nextLine();
+		inclass.professorPhone = sc.nextLine();
+		
+		inclasses.add(inclass);
 
 	}
 
 	public void deleteStudent() {
 		System.out.print("Subject:");
-		String subject = input.nextLine();
-		if(inclass == null) {
+		String subject = ss.nextLine();
+		int index = -1;
+		for(int i = 0; i < inclasses.size(); i++) {
+			if(inclasses.get(i).subject.equals(subject)) {
+				index = i;
+				break;
+			}
+		}
+		
+		if(index >= 0) {
+			inclasses.remove(index);
+			Class.numClassesRegistered--;
+			System.out.println("The class " + subject + " is deleted");
+		}
+		else {
 			System.out.println("The class has not been registered");
 			return;
 		}
-		if(inclass.subject.equals(subject)) {
-			inclass = null;
-			System.out.println("The class is deleted");
-		}
+		
 	}
 
 	public void editStudent() {
-		Scanner sc = new Scanner(System.in);
 		System.out.print("Subject:");
-		String subject = input.nextLine();
-		if(inclass.subject.equals(subject)) {	
-			int num = -1;
-			while(num != 8) {
-				System.out.println("--- Class Info Edit Menu ---");
-				System.out.println(" 1. Edit Subject");
-				System.out.println(" 2. Edit Class No.");
-				System.out.println(" 3. Edit Class Hour");
-				System.out.println(" 4. Edit Classroom");
-				System.out.println(" 5. Edit Professor");
-				System.out.println(" 6. Edit Professor Email");
-				System.out.println(" 7. Edit Professor Phone");
-				System.out.println(" 8. Exit");
-				System.out.print("Select one number:");
-				num = input.nextInt();
-				if(num == 1) {
-					System.out.print("Subject:");
-					inclass.subject = sc.nextLine();
-				}
-				else if(num == 2) {
-					System.out.print("Class No.:");
-					inclass.classNo = sc.nextLine();
-				}
-				else if(num == 3) {
-					System.out.print("Class Hour:");
-					inclass.classHour = sc.nextLine();
-				}
-				else if(num == 4) {
-					System.out.print("Classroom:");
-					inclass.classroom = sc.nextLine();
-				}
-				else if(num == 5) {
-					System.out.print("Professor:");
-					inclass.professor = sc.nextLine();
-				}
-				else if(num == 6) {
-					System.out.print("Email Adress:");
-					inclass.professorEmail = sc.nextLine();
-				}
-				else if(num == 7) {
-					System.out.print("Phone:");
-					inclass.professorPhone = sc.nextLine();
-				}
-				else {
-					continue;
-				}
-			}
-		}
+		String subject = sc.nextLine();
+		for(int i = 0; i < inclasses.size(); i++) {
+			Class inclass = inclasses.get(i);
+			if(inclass.subject.equals(subject)) {	
+				int num = -1;
+				while(num != 8) {
+					System.out.println("--- Class Info Edit Menu ---");
+					System.out.println(" 1. Edit Subject");
+					System.out.println(" 2. Edit Class No.");
+					System.out.println(" 3. Edit Class Hour");
+					System.out.println(" 4. Edit Classroom");
+					System.out.println(" 5. Edit Professor");
+					System.out.println(" 6. Edit Professor Email");
+					System.out.println(" 7. Edit Professor Phone");
+					System.out.println(" 8. Exit");
+					System.out.print("Select one number:");
+					num = sc.nextInt();
+					if(num == 1) {
+						System.out.print("Subject:");
+						inclass.subject = ss.nextLine();
+					}
+					else if(num == 2) {
+						System.out.print("Class No.:");
+						inclass.classNo = ss.nextLine();
+					}
+					else if(num == 3) {
+						System.out.print("Class Hour:");
+						inclass.classHour = ss.nextLine();
+					}
+					else if(num == 4) {
+						System.out.print("Classroom:");
+						inclass.classroom = ss.nextLine();
+					}
+					else if(num == 5) {
+						System.out.print("Professor:");
+						inclass.professor = ss.nextLine();
+					}
+					else if(num == 6) {
+						System.out.print("Email Adress:");
+						inclass.professorEmail = ss.nextLine();
+					}
+					else if(num == 7) {
+						System.out.print("Phone:");
+						inclass.professorPhone = ss.nextLine();
+					}
+					else {
+						continue;
+					} //if
+				} //while
+				break;
+			} //if
+		} //for
+		
 	}
 
-	public void viewStudent() {
-		Scanner input = new Scanner(System.in);
-		System.out.print("Subject:");
-		String subject = input.nextLine();
-		if(inclass.subject.equals(subject)) {
-			inclass.printInfo();
+	public void viewStudents() {
+//		System.out.print("Subject:");
+//		String subject = ss.nextLine();
+		System.out.println("# of registered classes: " + Class.numClassesRegistered);
+		for(int i = 0; i < inclasses.size(); i++) {
+			inclasses.get(i).printInfo();
 		}
 	}
 

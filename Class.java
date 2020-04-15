@@ -7,9 +7,10 @@ public class Class {
 	String professor;
 	String professorEmail;
 	String professorPhone;
+	static int numClassesRegistered = 0;
 	
 	public Class() {
-		
+		numClassesRegistered++;
 	}
 	
 	public Class (String subject, String classHour, String classroom, String professor) {
@@ -17,6 +18,7 @@ public class Class {
 		this.classHour = classHour;
 		this.classroom = classroom;
 		this.professor = professor;
+		numClassesRegistered++;
 	}
 	
 	public Class(String subject, String classNo,String classHour, String classroom, String professor, String email, String phone) {
@@ -27,6 +29,7 @@ public class Class {
 		this.professor = professor;
 		this.professorEmail = email;
 		this.professorPhone = phone;
+		numClassesRegistered++;
 	}
 	
 	public void printInfo() {
