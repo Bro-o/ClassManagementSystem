@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class MenuManager {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
-		ClassManager classManager = new ClassManager();
+		ClassManager classManager = new ClassManager(input);
 
 		int num = -1;
 		while(num != 5) {
@@ -15,6 +15,7 @@ public class MenuManager {
 			System.out.println(" 5. Exit");
 			System.out.print("Select one number:");
 			num = input.nextInt();
+			input.nextLine();
 			if(num == 1) {
 				classManager.addStudent();
 			}

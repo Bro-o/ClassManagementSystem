@@ -3,37 +3,36 @@ import java.util.Scanner;
 
 public class ClassManager {
 	ArrayList<Class> inclasses = new ArrayList<Class>();
-	Scanner sc = new Scanner(System.in);
-	Scanner ss = new Scanner(System.in);
+	Scanner input;
 
-	ClassManager(){
-
+	ClassManager(Scanner input){
+		this.input = input;
 	}
 
 	public void addStudent() {
 		Class inclass = new Class();
 
 		System.out.print("Subject:");
-		inclass.subject = sc.nextLine();
+		inclass.subject = input.nextLine();
 
 
 		System.out.print("Class No.:");
-		inclass.classNo = sc.nextLine();
+		inclass.classNo = input.nextLine();
 
 		System.out.print("Class Hour:");
-		inclass.classHour = sc.nextLine();
+		inclass.classHour = input.nextLine();
 
 		System.out.print("Classroom:");
-		inclass.classroom = sc.nextLine();
+		inclass.classroom = input.nextLine();
 
 		System.out.print("Professor:");
-		inclass.professor = sc.nextLine();
+		inclass.professor = input.nextLine();
 
 		System.out.print("Email Adress:");
-		inclass.professorEmail = sc.nextLine();
+		inclass.professorEmail = input.nextLine();
 
 		System.out.print("Phone:");
-		inclass.professorPhone = sc.nextLine();
+		inclass.professorPhone = input.nextLine();
 		
 		inclasses.add(inclass);
 
@@ -41,7 +40,7 @@ public class ClassManager {
 
 	public void deleteStudent() {
 		System.out.print("Subject:");
-		String subject = ss.nextLine();
+		String subject = input.nextLine();
 		int index = -1;
 		for(int i = 0; i < inclasses.size(); i++) {
 			if(inclasses.get(i).subject.equals(subject)) {
@@ -64,7 +63,7 @@ public class ClassManager {
 
 	public void editStudent() {
 		System.out.print("Subject:");
-		String subject = sc.nextLine();
+		String subject = input.nextLine();
 		for(int i = 0; i < inclasses.size(); i++) {
 			Class inclass = inclasses.get(i);
 			if(inclass.subject.equals(subject)) {	
@@ -80,34 +79,35 @@ public class ClassManager {
 					System.out.println(" 7. Edit Professor Phone");
 					System.out.println(" 8. Exit");
 					System.out.print("Select one number:");
-					num = sc.nextInt();
+					num = input.nextInt();
+					input.nextLine();
 					if(num == 1) {
 						System.out.print("Subject:");
-						inclass.subject = ss.nextLine();
+						inclass.subject = input.nextLine();
 					}
 					else if(num == 2) {
 						System.out.print("Class No.:");
-						inclass.classNo = ss.nextLine();
+						inclass.classNo = input.nextLine();
 					}
 					else if(num == 3) {
 						System.out.print("Class Hour:");
-						inclass.classHour = ss.nextLine();
+						inclass.classHour = input.nextLine();
 					}
 					else if(num == 4) {
 						System.out.print("Classroom:");
-						inclass.classroom = ss.nextLine();
+						inclass.classroom = input.nextLine();
 					}
 					else if(num == 5) {
 						System.out.print("Professor:");
-						inclass.professor = ss.nextLine();
+						inclass.professor = input.nextLine();
 					}
 					else if(num == 6) {
 						System.out.print("Email Adress:");
-						inclass.professorEmail = ss.nextLine();
+						inclass.professorEmail = input.nextLine();
 					}
 					else if(num == 7) {
 						System.out.print("Phone:");
-						inclass.professorPhone = ss.nextLine();
+						inclass.professorPhone = input.nextLine();
 					}
 					else {
 						continue;
