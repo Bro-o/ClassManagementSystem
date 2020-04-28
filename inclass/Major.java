@@ -15,6 +15,10 @@ public class Major {
 	public Major() {
 
 	}
+	
+	public Major(ClassKind kind) {
+		this.kind = kind;
+	}
 		
 	public Major (String subject, String classHour, String classroom, String professor) {
 		this.subject = subject;
@@ -23,7 +27,8 @@ public class Major {
 		this.professor = professor;
 	}
 	
-	public Major(String subject, String classNo,String classHour, String classroom, String professor, String email, String phone) {
+	public Major(ClassKind kind, String subject, String classNo,String classHour, String classroom, String professor, String email, String phone) {
+		this.kind = kind;
 		this.subject = subject;
 		this.classNo = classNo;
 		this.classHour = classHour;
@@ -98,7 +103,17 @@ public class Major {
 	}
 	
 	public void printInfo() {
-		System.out.println("subject: " + subject + " classNo: " + classNo + " classHour: "+ classHour +" classroom: " + classroom + " professor: " + professor + " professorEmail: " + professorEmail + " professorPhone: " + professorPhone);
+		String skind = "none";
+		switch(this.kind) {
+		case Major:
+			skind = "Major";
+			break;
+		case Course:
+			skind = "Course";
+			break;
+		default:
+		}
+		System.out.println("kind: " + skind + "subject: " + subject + " classNo: " + classNo + " classHour: "+ classHour +" classroom: " + classroom + " professor: " + professor + " professorEmail: " + professorEmail + " professorPhone: " + professorPhone);
 	}
 	
 	public void getUserInput(Scanner input) {

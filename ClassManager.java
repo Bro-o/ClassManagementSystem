@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import inclass.ClassKind;
 import inclass.Course;
 import inclass.Major;
 
@@ -12,7 +13,7 @@ public class ClassManager {
 		this.input = input;
 	}
 
-	public void addStudent() {
+	public void addClass() {
 		int kind = 0;
 		Major inclass;
 		while(kind != 1 && kind !=2) {
@@ -22,13 +23,13 @@ public class ClassManager {
 			kind = input.nextInt();
 			input.nextLine();
 			if(kind == 1) {
-				inclass = new Major();
+				inclass = new Major(ClassKind.Major);
 				inclass.getUserInput(input);
 				inclasses.add(inclass);
 				break;
 			}
 			else if(kind == 2) {
-				inclass = new Course();
+				inclass = new Course(ClassKind.Course);
 				inclass.getUserInput(input);
 				inclasses.add(inclass);
 				break;
@@ -42,7 +43,7 @@ public class ClassManager {
 
 	}
 
-	public void deleteStudent() {
+	public void deleteClass() {
 		System.out.print("Subject:");
 		String subject = input.nextLine();
 		int index = -1;
@@ -64,7 +65,7 @@ public class ClassManager {
 		
 	}
 
-	public void editStudent() {
+	public void editClass() {
 		System.out.print("Subject:");
 		String subject1 = input.nextLine();
 		for(int i = 0; i < inclasses.size(); i++) {
@@ -129,7 +130,7 @@ public class ClassManager {
 		
 	}
 
-	public void viewStudents() {
+	public void viewClass() {
 //		System.out.print("Subject:");
 //		String subject = ss.nextLine();
 		System.out.println("# of registered classes: " + inclasses.size());

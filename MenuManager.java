@@ -17,16 +17,16 @@ public class MenuManager {
 			num = input.nextInt();
 			input.nextLine();
 			if(num == 1) {
-				classManager.addStudent();
+				classManager.addClass();
 			}
 			else if(num == 2) {
-				classManager.deleteStudent();
+				classManager.deleteClass();
 			}
 			else if(num == 3) {
-				classManager.editStudent();
+				classManager.editClass();
 			}
 			else if(num == 4) {
-				classManager.viewStudents();
+				classManager.viewClass();
 			}
 			else {
 				continue;
