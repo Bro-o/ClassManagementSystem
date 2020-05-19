@@ -2,6 +2,8 @@ package inclass;
 
 import java.util.Scanner;
 
+import exception.FormatException;
+
 public interface ClassInput {
 	public String getSubject();
 	
@@ -11,11 +13,11 @@ public interface ClassInput {
 	
 	public void setClassHour(String classHour);
 	
-	public void setClassroom(String classroom);
+	public void setClassroom(String classroom) throws FormatException;
 	
 	public void setProfessor(String professor);
 	
-	public void setProfessorEmail(String professorEmail);
+	public void setProfessorEmail(String professorEmail) throws FormatException;
 	
 	public void setProfessorPhone(String professorPhone);
 	

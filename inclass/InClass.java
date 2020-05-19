@@ -2,6 +2,8 @@ package inclass;
 
 import java.util.Scanner;
 
+import exception.FormatException;
+
 public abstract class InClass implements ClassInput{
 	protected ClassKind kind = ClassKind.Major;
 	protected String subject;
@@ -74,7 +76,10 @@ public abstract class InClass implements ClassInput{
 		return classroom;
 	}
 
-	public void setClassroom(String classroom) {
+	public void setClassroom(String classroom) throws FormatException{
+		if(!classroom.contains("-") && !classroom.equals("Online")) {
+			throw new FormatException();
+		}
 		this.classroom = classroom;
 	}
 
@@ -90,7 +95,10 @@ public abstract class InClass implements ClassInput{
 		return professorEmail;
 	}
 
-	public void setProfessorEmail(String professorEmail) {
+	public void setProfessorEmail(String professorEmail) throws FormatException{
+		if(!professorEmail.contains("@") && !professorEmail.equals("-")) {
+			throw new FormatException();
+		}
 		this.professorEmail = professorEmail;
 	}
 
@@ -122,9 +130,17 @@ public abstract class InClass implements ClassInput{
 	}
 	
 	public void setClassRoom(Scanner input) {
-		System.out.print("Classroom:");
-		String classroom = input.nextLine();
-		this.setClassroom(classroom);
+		String classroom = "";
+		while(!classroom.contains("-") && !classroom.contains("Online")) {
+			System.out.print("Classroom:");
+			classroom = input.nextLine();
+			try {
+				this.setClassroom(classroom);
+			} catch (FormatException e) {
+				System.out.println("Incorrect Classroom Format. Put -");
+			}
+		}
+		
 	}
 	
 	public void setProfessor(Scanner input) {
@@ -134,9 +150,16 @@ public abstract class InClass implements ClassInput{
 	}
 	
 	public void setProfessorEmail(Scanner input) {
-		System.out.print("Email Adress:");
-		String professorEmail = input.nextLine();
-		this.setProfessorEmail(professorEmail);
+		String professorEmail = "";
+		while(!professorEmail.contains("@") && !professorEmail.contains("-")) {
+			System.out.print("Email Adress:");
+			professorEmail = input.nextLine();
+			try {
+				this.setProfessorEmail(professorEmail);
+			} catch (FormatException e) {
+				System.out.println("Incorrect Email Format. Put @");
+			}
+		}
 	}
 	
 	public void setProfessorPhone(Scanner input) {

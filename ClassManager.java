@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import inclass.ClassInput;
@@ -18,30 +19,37 @@ public class ClassManager {
 		int kind = 0;
 		ClassInput classInput;
 		while(kind != 1 && kind !=2) {
-			System.out.println("1 for Major");
-			System.out.println("2 for Course");
-			System.out.println("Select num for Class Kind between 1 and 2: ");
-			kind = input.nextInt();
-			input.nextLine();
-			if(kind == 1) {
-				classInput = new Major(ClassKind.Major);
-				classInput.getClassInput(input);
-				inclasses.add(classInput);
-				break;
+			try {
+				System.out.println("1 for Major");
+				System.out.println("2 for Course");
+				System.out.println("Select num for Class Kind between 1 and 2: ");
+				kind = input.nextInt();
+				input.nextLine();
+				if(kind == 1) {
+					classInput = new Major(ClassKind.Major);
+					classInput.getClassInput(input);
+					inclasses.add(classInput);
+					break;
+				}
+				else if(kind == 2) {
+					classInput = new Course(ClassKind.Course);
+					classInput.getClassInput(input);
+					inclasses.add(classInput);
+					break;
+				}
+				else {
+					System.out.println("Select num for Class Kind between 1 and 2.");
+				}
 			}
-			else if(kind == 2) {
-				classInput = new Course(ClassKind.Course);
-				classInput.getClassInput(input);
-				inclasses.add(classInput);
-				break;
-			}
-			else {
-				System.out.println("Select num for Class Kind between 1 and 2.");
+			catch(InputMismatchException e) {
+				System.out.println("Please put an integer between 1 and 2");
+				if(input.hasNext()) {
+					input.next();
+				}
+				kind = 0;
 			}
 		}
 		
-
-
 	}
 
 	public void deleteClass() {

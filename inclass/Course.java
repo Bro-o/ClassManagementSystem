@@ -2,6 +2,8 @@ package inclass;
 
 import java.util.Scanner;
 
+import exception.FormatException;
+
 public class Course extends InClass{
 	
 	String examDate;
@@ -49,15 +51,20 @@ public class Course extends InClass{
 			System.out.println("Is this e-learning class? (Y/N)");
 			ans = input.next().charAt(0);
 			input.nextLine();
-			if(ans == 'y' || ans == 'Y') {
-				this.setClassHour("-");
-				this.setClassroom("-");
-				break;
+			try {
+				if(ans == 'y' || ans == 'Y') {
+					this.setClassHour("Unconstraint");
+					this.setClassroom("Online");
+					break;
+				}
+				else if(ans == 'n' || ans == 'N') {
+					setClassHour(input);
+					setClassRoom(input);
+					break;
+				}
 			}
-			else if(ans == 'n' || ans == 'N') {
-				setClassHour(input);
-				setClassRoom(input);
-				break;
+			catch(FormatException e) {
+				System.out.println("Incorrect Classroom Format. Put -");
 			}
 		}
 	}
