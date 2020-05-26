@@ -1,10 +1,16 @@
 package inclass;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 import exception.FormatException;
 
-public abstract class InClass implements ClassInput{
+public abstract class InClass implements ClassInput, Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7717717036728651575L;
+	
 	protected ClassKind kind = ClassKind.Major;
 	protected String subject;
 	protected String classNo;

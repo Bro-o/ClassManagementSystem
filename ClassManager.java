@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -7,14 +8,23 @@ import inclass.ClassKind;
 import inclass.Course;
 import inclass.Major;
 
-public class ClassManager {
+public class ClassManager implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7929536569071062266L;
+	
 	ArrayList<ClassInput> inclasses = new ArrayList<ClassInput>();
-	Scanner input;
+	transient Scanner input;
 
 	ClassManager(Scanner input){
 		this.input = input;
 	}
 
+	public void setScanner(Scanner input) {
+		this.input = input;
+	}
+	
 	public void addClass() {
 		int kind = 0;
 		ClassInput classInput;
