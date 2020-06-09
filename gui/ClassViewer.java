@@ -10,8 +10,13 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import javax.swing.table.DefaultTableModel;
 
-public class ClassViewer extends JFrame{
-	public ClassViewer() {
+public class ClassViewer extends JPanel{
+	
+	WindowFrame frame;
+	
+	public ClassViewer(WindowFrame frame) {
+		this.frame = frame;
+		
 		DefaultTableModel model = new DefaultTableModel();
 		model.addColumn("Subject");
 		model.addColumn("ClassNo.");
@@ -25,8 +30,5 @@ public class ClassViewer extends JFrame{
 		JScrollPane sp = new JScrollPane(table);
 		
 		this.add(sp);
-		this.setSize(300,300);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setVisible(true);
 	}
 }
